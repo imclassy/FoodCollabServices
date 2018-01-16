@@ -1,16 +1,16 @@
 package kot.negocio.entidades
 
-class Empresa(val id:Long,
-              val idPersona:Long,
-              val regimen: Regimen,
-              val esGranContribuyente:Boolean,
-              val esAutoRetenedor:Boolean,
-              override val version: Long): Versionable {
+class RUT(override val id:Long?=null,
+          val idPersona:Long,
+          val regimen: Regimen,
+          val esGranContribuyente:Boolean,
+          val esAutoRetenedor:Boolean,
+          override val version: Long?=null): Versionable, Identificable {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as Empresa
+        other as RUT
 
         if (id != other.id) return false
         if (idPersona != other.idPersona) return false
@@ -23,12 +23,12 @@ class Empresa(val id:Long,
     }
 
     override fun hashCode(): Int {
-        var result = id.hashCode()
+        var result = id?.hashCode() ?: 0
         result = 31 * result + idPersona.hashCode()
         result = 31 * result + regimen.hashCode()
         result = 31 * result + esGranContribuyente.hashCode()
         result = 31 * result + esAutoRetenedor.hashCode()
-        result = 31 * result + version.hashCode()
+        result = 31 * result + (version?.hashCode() ?: 0)
         return result
     }
 }

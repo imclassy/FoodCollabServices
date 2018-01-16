@@ -1,6 +1,6 @@
 package kot.negocio.entidades
 
-class Persona (val id: Long,
+class Persona (override val id: Long?,
                val nombreCompleto: String,
                val primerNombre: String,
                val segundoNombre: String,
@@ -12,7 +12,7 @@ class Persona (val id: Long,
                val direccion: String,
                val telefono: String,
                val email: String,
-               override val version: Long ): Versionable {
+               override val version: Long? ): Versionable, Identificable {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -37,7 +37,7 @@ class Persona (val id: Long,
     }
 
     override fun hashCode(): Int {
-        var result = id.hashCode()
+        var result = id?.hashCode() ?: 0
         result = 31 * result + nombreCompleto.hashCode()
         result = 31 * result + primerNombre.hashCode()
         result = 31 * result + segundoNombre.hashCode()
@@ -49,7 +49,7 @@ class Persona (val id: Long,
         result = 31 * result + direccion.hashCode()
         result = 31 * result + telefono.hashCode()
         result = 31 * result + email.hashCode()
-        result = 31 * result + version.hashCode()
+        result = 31 * result + (version?.hashCode() ?: 0)
         return result
     }
 }
