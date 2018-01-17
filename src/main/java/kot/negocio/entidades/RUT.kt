@@ -1,7 +1,7 @@
 package kot.negocio.entidades
 
 class RUT(override val id:Long?=null,
-          val idPersona:Long,
+          val persona: Persona,
           val regimen: Regimen,
           val esGranContribuyente:Boolean,
           val esAutoRetenedor:Boolean,
@@ -13,7 +13,7 @@ class RUT(override val id:Long?=null,
         other as RUT
 
         if (id != other.id) return false
-        if (idPersona != other.idPersona) return false
+        if (persona != other.persona) return false
         if (regimen != other.regimen) return false
         if (esGranContribuyente != other.esGranContribuyente) return false
         if (esAutoRetenedor != other.esAutoRetenedor) return false
@@ -24,7 +24,7 @@ class RUT(override val id:Long?=null,
 
     override fun hashCode(): Int {
         var result = id?.hashCode() ?: 0
-        result = 31 * result + idPersona.hashCode()
+        result = 31 * result + persona.hashCode()
         result = 31 * result + regimen.hashCode()
         result = 31 * result + esGranContribuyente.hashCode()
         result = 31 * result + esAutoRetenedor.hashCode()
