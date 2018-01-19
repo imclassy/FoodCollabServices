@@ -7,7 +7,8 @@ class Colaboracion(override val id:Long?=null,
                    val descripcion: String?,
                    val fechaInicio: Long,
                    val tipoColaboracion: TipoColaboracion,
-                   val miembros: List<Empresa>,
+                   val miembros: Set<Empresa>,
+                   val estaActiva: Boolean = true,
                    override val version: Long?=null):Versionable, Identificable {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

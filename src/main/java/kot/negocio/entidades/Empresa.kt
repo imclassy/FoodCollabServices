@@ -4,6 +4,7 @@ class Empresa(override val id: Long?=null,
               val rut: RUT,
               val representanteLegal: Persona?,
               val objeto: String?,
+              val estaActiva: Boolean = true,
               override val version: Long?=null): Versionable, Identificable {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -15,6 +16,7 @@ class Empresa(override val id: Long?=null,
         if (rut != other.rut) return false
         if (representanteLegal != other.representanteLegal) return false
         if (objeto != other.objeto) return false
+        if (estaActiva != other.estaActiva) return false
         if (version != other.version) return false
 
         return true
@@ -25,6 +27,7 @@ class Empresa(override val id: Long?=null,
         result = 31 * result + rut.hashCode()
         result = 31 * result + (representanteLegal?.hashCode() ?: 0)
         result = 31 * result + (objeto?.hashCode() ?: 0)
+        result = 31 * result + estaActiva.hashCode()
         result = 31 * result + (version?.hashCode() ?: 0)
         return result
     }

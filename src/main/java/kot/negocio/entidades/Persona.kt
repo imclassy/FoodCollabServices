@@ -12,6 +12,7 @@ class Persona (override val id: Long?,
                val direccion: String,
                val telefono: String,
                val email: String,
+               val estaActiva: Boolean = true,
                override val version: Long? ): Versionable, Identificable {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
